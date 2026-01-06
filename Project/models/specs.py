@@ -1,0 +1,9 @@
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class SpecConstraints:
+    ptac: Optional[str] = None          # "12t", "19t", ...
+    energy: Optional[str] = None        # "Diesel", "Electrique", ...
+    color: Optional[str] = None         # "Vert", "Red", ...
+    refrigerated: Optional[bool] = None # True/False si imposé

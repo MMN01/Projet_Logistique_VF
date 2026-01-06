@@ -1,0 +1,163 @@
+<!--Exemple d'utilisation de la bibliothèque Chart.js-->
+<!--pour plus d'exemples et d'explications
+	voir : https://www.chartjs.org/docs/latest/samples/information.html -->
+
+<!--
+  Ce fichier est à ouvrir via un navigateur web
+-->
+
+<!DOCTYPE html>
+<html>
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script-->
+<script src="lib/Chart_min.js"></script>
+<script src="lib/Chart_annotations.js"></script>
+<body>
+<div ALIGN="MIDDLE">
+
+	<canvas id="myChart" style="width:100%; max-width:900px"></canvas>
+
+	<TABLE CELLSPACING="15%" CELLPADDING="20%">
+		<TR>
+			<TD>
+				<canvas id="myChart1" class="chartjs-render-monitor" style="width: 100%; max-width: 500px; display: block;"></canvas>
+			</TD><TD>
+				<canvas id="myChart2" class="chartjs-render-monitor" style="width: 100%; max-width: 500px; display: block;"></canvas>
+			</TD><TD>
+				<canvas id="myChart3" class="chartjs-render-monitor" style="width: 100%; max-width: 500px; display: block;"></canvas>
+			</TD>
+		</TR>
+		<TR>
+			<TD COLSPAN="3" ALIGN="MIDDLE">
+				<canvas id="myChart5" style="width:100%;max-width:600px"></canvas>
+			</TD>
+		</TR>
+	</TABLE>
+</div>
+
+<script>
+
+//1er graphique
+var xValues = ["A",1,2,"10:30","E","F","G","H","I","J"];
+//Possible de l'avoir en 'radar', changer "line" en "radar"
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      label: 'Dataset 1',
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "#00FFFF",
+      borderDash: [5, 5],
+      fill: false
+    }, {
+      label: 'Dataset 2',
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "green",
+      fill: false
+    }, {
+      label: 'Dataset 3',
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "blue",
+      fill: false
+    }]
+  },
+  options: {
+    legend: {display: true},
+  }
+});
+
+//2e graphique
+var xValues2 = ["A", "B"];
+var yValues2 = [8, 92];
+var barColors2 = ["#b91d47","#00aba9"];
+new Chart("myChart1", {
+  type: "doughnut",
+  data: {
+    labels: xValues2,
+    datasets: [{
+      backgroundColor: barColors2,
+      data: yValues2
+    }]
+  }
+});
+
+
+//3e graphique
+var xValues3 = ["A", "B", "C"];
+var yValues3 = [10, 20, 4];
+var barColors3 = ["#b91d47","#00aba9", "#FF4412"];
+new Chart("myChart2", {
+  type: "pie",
+  data: {
+    labels: xValues3,
+    datasets: [{
+      backgroundColor: barColors3,
+      data: yValues3
+    }]
+  }
+});
+
+//4e graphique
+var xValues4 = ["A", "B", "C"];
+var yValues4 = [10, 20, 4];
+var barColors4 = ["#00aba9", "#FF4412","#EE1100"];
+new Chart("myChart3", {
+  type: "polarArea",
+  data: {
+    labels: xValues4,
+    datasets: [{
+      backgroundColor: barColors4,
+      data: yValues4
+    }]
+  },
+    options: {
+    legend: {display: true,position:"bottom"},
+    title: {
+      display: true,
+      text: "Title : myChart3"
+    }
+  }
+});
+
+
+//5e graphique - GRAPIQUE 'BAR'
+var xValues5 = ["A", "B", "C", "D", "E"];
+var yValues5 = [55, 49, 44, 24, 15];
+var barColors5 = ["red", "green","blue","orange","brown"];
+
+new Chart("myChart5", {
+  type: "bar",
+  data: {
+    labels: xValues5,
+    datasets: [{
+      backgroundColor: barColors5,
+      data: yValues5
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Title : myChart5"
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    },
+    annotation: {
+      annotations: [{
+          type: 'box',
+          drawTime: 'beforeDatasetsDraw',
+          yScaleID: 'y-axis-0',
+          yMin: 40,
+          yMax: 50,
+          backgroundColor: 'rgba(255, 99, 132,0.3)'
+        }]
+      }
+  }
+});
+
+</script>
